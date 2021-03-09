@@ -1,0 +1,53 @@
+# API-first development with OpenAPI
+# This file will be used at compile time to generate Spring-MVC endpoint stubs using openapi-generator
+openapi: '3.0.1'
+info:
+  title: 'FinDashboard'
+  version: 0.0.1
+servers:
+  - url: http://localhost:8080/api
+    description: Development server
+paths:
+  '/{ticker}':
+    get:
+      summary: Ticker lookup endpoint
+      operationId: ticker
+      parameters:
+        - name: ticker
+          in: path
+          schema:
+            type: string
+          required: true
+          description: The ticker symbol to lookup
+        - name: startDate
+          in: query
+          schema:
+            type: string
+          required: true
+          description: The start date by which to lookup ticker data
+        - name: endDate
+          in: query
+          schema:
+            type: string
+          required: false
+          description: The end date by which to lookup ticker data.  If not included the current date will be used.
+      responses:
+        200:
+          description: OK
+          content: {}
+        201:
+          description: Created
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+components:
+  responses: {}
+  securitySchemes: {}
